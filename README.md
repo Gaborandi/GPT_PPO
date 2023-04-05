@@ -29,7 +29,7 @@
 # Version 2 
 # in this version i tried to enhance the reward function by designing a custom reward function. The main differences between the RewardFunction from the previous code (V1) and the CustomRewardFunction (V2) from the current code are: :
 
-1- In the CustomRewardFunction, the spacy library is used to load an English language model (en_core_web_md), and the reference_text is converted into a spacy document object (self.reference_doc). This is not present in the RewardFunction.
+1- In the CustomRewardFunction, the **spacy library** is used to load an English language model (en_core_web_md), and the reference_text is converted into a spacy document object (self.reference_doc). This is not present in the RewardFunction.
 
 2- The CustomRewardFunction has an additional max_length parameter in its constructor. This is used to apply a penalty if the generated text exceeds the maximum allowed length.
 
@@ -38,3 +38,17 @@
 4- In the CustomRewardFunction, a penalty of 1 is applied to the reward if the generated text exceeds the maximum allowed length. This is not present in the RewardFunction.
 
 # So, the CustomRewardFunction has additional components to take into account the semantic similarity between the generated text and the reference text, as well as a penalty for exceeding the maximum allowed length, while the RewardFunction only considers perplexity-based rewards.
+
+
+
+# The choice to use SpaCy instead of the GPT model for calculating the semantic similarity in the reward function is mainly due to the differences in the approaches of these two tools :
+
+1- SpaCy is specifically designed for natural language processing tasks, and it comes with pre-trained word embeddings that can effectively capture semantic information in text. The similarity between two text documents in SpaCy is calculated based on the similarity between their word embeddings, which can be a straightforward and computationally efficient way to estimate the semantic similarity between two pieces of text.
+
+2- On the other hand, GPT models are primarily designed for language generation tasks. Although they can be fine-tuned to perform other NLP tasks, calculating the semantic similarity between two pieces of text is not one of their native capabilities. Using a GPT model for this purpose would likely require additional fine-tuning and adaptation, which could be more complex and computationally expensive compared to using SpaCy's built-in similarity function.
+
+3- By using SpaCy, the code leverages an efficient and straightforward approach to estimating semantic similarity, without the need for additional fine-tuning or complex adaptation of the GPT model.
+
+
+
+
