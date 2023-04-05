@@ -1,4 +1,4 @@
-# GPT_PPO
+# GPT_PPO V1
 # Applying PPO on the Attention Mechanism of the GPT-2 model
 
 # This code aims to fine-tune a GPT-2 model for a custom text generation task using the Proximal Policy Optimization (PPO) algorithm, which is a reinforcement learning approach. Here's a detailed theoretical explanation of the code:
@@ -22,6 +22,7 @@
 9- Script execution: The script, when executed, runs the main function to train the model and then uses the generate_text function to generate text using the fine-tuned model.
 
 # The main idea behind this code is to fine-tune a GPT-2 model for a custom text generation task using reinforcement learning, specifically the PPO algorithm. The agent learns to generate text similar to a given reference text by interacting with the custom environment and receiving feedback in the form of rewards from the custom reward function.
+
 
 
 # GPT_PPO V2 
