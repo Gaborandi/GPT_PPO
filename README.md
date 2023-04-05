@@ -1,6 +1,7 @@
-# GPT_PPO V1
+# GPT_PPO 
 # Applying PPO on the Attention Mechanism of the GPT-2 model
 
+# Version 1
 # This code aims to fine-tune a GPT-2 model for a custom text generation task using the Proximal Policy Optimization (PPO) algorithm, which is a reinforcement learning approach. Here's a detailed theoretical explanation of the code:
 
 1- Importing necessary libraries: The code imports the required PyTorch, transformers, and numpy libraries to build the custom environment, model, and training classes.
@@ -25,23 +26,15 @@
 
 
 
-# GPT_PPO V2 
-# This code is an implementation of a custom reinforcement learning environment for text generation using the GPT-2 model and Proximal Policy Optimization (PPO) as the training algorithm. The main components of the code are:
+# Version 2 
+# in this version i tried to enhance the reward function by designing a custom reward function. The main differences between the RewardFunction from the previous code (V1) and the CustomRewardFunction (V2) from the current code are: :
 
-1- TextGenerationEnvironment: A class defining the environment for text generation using GPT-2. It provides methods for generating text, resetting the environment, and taking a step in the environment given an action.
+1- In the CustomRewardFunction, the spacy library is used to load an English language model (en_core_web_md), and the reference_text is converted into a spacy document object (self.reference_doc). This is not present in the RewardFunction.
 
-2- ModifiedGPT: A class that modifies the GPT-2 model to include an additional action layer and softmax activation function. This is used to generate a probability distribution over the possible actions (tokens) given an input text.
+2- The CustomRewardFunction has an additional max_length parameter in its constructor. This is used to apply a penalty if the generated text exceeds the maximum allowed length.
 
-3- CustomRewardFunction: A class that defines a custom reward function for the reinforcement learning problem. It takes into account the perplexity of the generated text, its semantic similarity to a reference text, and applies a penalty if the generated text exceeds the maximum allowed length.
+3- In the CustomRewardFunction, after calculating the perplexity-based reward, the code calculates the semantic similarity between the generated text and the reference text using the spacy document objects. This similarity is then added to the reward. This step is not present in the RewardFunction.
 
-4- RolloutStorage: A class that manages the storage of rollout data (observations, actions, action probabilities, rewards, and done flags) collected during the training process.
+4- In the CustomRewardFunction, a penalty of 1 is applied to the reward if the generated text exceeds the maximum allowed length. This is not present in the RewardFunction.
 
-5- PPOTrainer: A class that implements the PPO algorithm for training the modified GPT-2 model in the text generation environment. It includes methods for training, updating model parameters, and managing the rollout storage.
-
-6- main(): The main function initializes the environment, model, and PPO trainer, and starts the training process. After training, it saves the trained model to a file.
-
-7- generate_text(): A function that generates text given a prompt using the trained model and GPT-2 tokenizer.
-
-8- The code first sets up a text generation environment using GPT-2, a modified GPT-2 model, and a custom reward function based on a reference text. It then trains the model using the PPO algorithm for a specified number of steps. After training, the fine-tuned model is saved to a file. Finally, the script demonstrates how to use the trained model to generate text given a prompt.
-
-# When run, the code will train the modified GPT-2 model using the PPO algorithm in the text generation environment. After training, it will save the fine-tuned model weights and demonstrate generating text given a prompt using the trained model.
+# So, the CustomRewardFunction has additional components to take into account the semantic similarity between the generated text and the reference text, as well as a penalty for exceeding the maximum allowed length, while the RewardFunction only considers perplexity-based rewards.
