@@ -51,4 +51,21 @@
 
 
 
+# Version 3
+#This code defines a reinforcement learning environment and associated components for training a GPT-2 model to generate text based on a provided reference text. The main components are:
 
+1- TextGenerationEnvironment: A class that defines the text generation environment. It takes a model name or path and a reward function as inputs. This environment is responsible for generating text and keeping track of the current state.
+
+2- ModifiedGPT: A class that extends the GPT-2 model with an additional action layer and softmax layer. This modified model is used to generate text based on the action probabilities.
+
+3- RewardFunction: A class that defines the reward function for the reinforcement learning task. It computes the reward based on the similarity of the generated text to a given reference text and the perplexity of the generated text.
+
+4- PPOTrainer: A class that implements the Proximal Policy Optimization (PPO) algorithm for training the GPT-2 model. It is responsible for selecting actions based on the model's action probabilities, updating the model parameters, and managing the rollout storage.
+
+5- RolloutStorage: A class that stores observations, actions, action probabilities, rewards, and done flags for each step in the environment. It is used to compute returns and advantages for the PPO algorithm.
+
+# The code starts by importing necessary libraries and defining the classes mentioned above. The TextGenerationEnvironment class is responsible for generating text using the GPT-2 model, and the ModifiedGPT class extends the GPT-2 model to generate action probabilities for reinforcement learning.
+
+# The RewardFunction class computes rewards based on the cosine similarity between the generated text and a reference text, as well as a penalty for repeated tokens. The PPOTrainer class is responsible for training the GPT-2 model using the Proximal Policy Optimization algorithm, and the RolloutStorage class manages the rollout storage used during training.
+
+# The code also defines helper functions like select_action() and update() to manage the reinforcement learning process. The PPOTrainer class is then used to train the GPT-2 model using the environment, reward function, and rollout storage.
